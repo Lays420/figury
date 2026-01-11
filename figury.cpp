@@ -1,7 +1,6 @@
 ﻿#define _USE_MATH_DEFINES
 #include <iostream>
 #include <stdio.h>
-#include <windows.h>
 #include <cstdlib>
 #include <cmath>
 int wybor;
@@ -13,7 +12,7 @@ int main()
 	setlocale(LC_ALL, "polish");
 figury:
 	cout << "[1]kwadrat [2]prostokąt [3]trójkąt [4]koło [5]rąb [6]równoległobok [7]trapez\n[8]sześcian [9]prostopadłościan [10]stożek\n" << endl;
-	cout << "[11]ostrosłóp [12]walec [13]kula [14]opuść [15]wyczyść ekran\n" << endl;
+	cout << "[11]ostrosłup [12]walec [13]kula [14]opuść [15]wyczyść ekran\n" << endl;
 	cin >> wybor;
 	cout << endl;
 	switch (wybor)
@@ -299,7 +298,7 @@ figury:
 		case 5:
 			goto figury;
 		}
-	case 5:
+	case 4:
 		goto kolo;
 	kolo:
 		cout << "[1]obwód [2]pole [3]powrót\n" << endl;
@@ -338,7 +337,7 @@ figury:
 		defalut:
 			goto kolo;
 		}
-	case 6:
+	case 5:
 		goto rab;
 	rab:
 		cout << "[1]obwód [2]pole [3]powrót\n" << endl;
@@ -383,7 +382,7 @@ figury:
 		default:
 			goto figury;
 		}
-	case 7:
+	case 6:
 		goto rownoleglobok;
 	rownoleglobok:
 		cout << "[1]obwód [2]pole [3]powrót\n" << endl;
@@ -435,7 +434,7 @@ figury:
 		default:
 			goto figury;
 		}
-	case 8:
+	case 7:
 		goto trapez;
 	trapez:
 		cout << "[1]obwód [2]pole [3]powrót\n" << endl;
@@ -512,7 +511,7 @@ figury:
 		default:
 			goto figury;
 		}
-	case 9:
+	case 8:
 		goto szescian;
 	szescian:
 		cout << "[1]pole [2]objętość [3]powrót\n" << endl;
@@ -545,7 +544,7 @@ figury:
 		default:
 			goto figury;
 		}
-	case 10:
+	case 9:
 		goto prostopadloscian;
 		prostopadloscian:
 		cout << "[1]pole [2]objętość [3]powrót\n" << endl;
@@ -586,12 +585,256 @@ figury:
 		case 2:
 			goto prostopadloscian_objetosc;
 		prostopadloscian_objetosc:
+			cout << endl << "wprowadź pierwszą krawędź\n" << endl;
+			cin >> a;
+			if (a <= 0)
+			{
+				cout << endl << "krawędź nie może być mniejsza lub równa zeru\n" << endl;
+				goto prostopadloscian_objetosc;
+			}
+			cout << endl << "wprowadź drugą krawędź\n" << endl;
+			cin >> b;
+			if (b <= 0)
+			{
+				cout << endl << "krawędź nie może być mniejsza lub równa zeru\n" << endl;
+				goto prostopadloscian_objetosc;
+			}
+			cout << endl << "wprowadź trzecią krawędź\n" << endl;
+			cin >> c;
+			if (c <= 0)
+			{
+				cout << endl << "krawędź nie może być mniejsza lub równa zeru\n" << endl;
+				goto prostopadloscian_objetosc;
+			}
+			abc = a * b * c;
+			cout << endl << "objętość prostopadłościanu o krawędziach " << a << " " << b << " oraz " << c << " wynosi " << abc << endl;
+			cout << endl;
+			goto prostopadloscian;
+		case 3:
+			goto figury;
+		default:
+			goto figury;
+		}
+	case 10:
+		goto stozek;
+	stozek:
+		cout << "[1]pole [2]objętość [3]powrót\n" << endl;
+		cin >> wybor;
+		switch (wybor)
+		{
+		case 1:
+			goto stozek_pole;
+		stozek_pole:
+			cout << "wprowadź promień podstawy\n" << endl;
+			cin >> a;
+			if (a <= 0)
+			{
+				cout << "promień nie może być mniejszy lub równy 0\n" << endl;
+				goto stozek_pole;
+			}
+			cout << "wprowadź tworzącą stożka\n" << endl;
+			cin >> b;
+			if (b <= 0)
+			{
+				cout << "tworząca nie może być mniejsza lub równa 0\n" << endl;
+				goto stozek_pole;
+			}
+			// Pc = Pi * r * (r + l)
+			c = M_PI * a * (a + b);
+			cout << endl << "pole powierzchni całkowitej stożka o promieniu " << a << " i tworzącej " << b << " wynosi " << c << endl;
+			goto stozek;
 
+		case 2:
+			goto stozek_objetosc;
+		stozek_objetosc:
+			cout << "wprowadź promień podstawy\n" << endl;
+			cin >> a;
+			if (a <= 0)
+			{
+				cout << "promień nie może być mniejszy lub równy 0\n" << endl;
+				goto stozek_objetosc;
+			}
+			cout << "wprowadź wysokość stożka\n" << endl;
+			cin >> b;
+			if (b <= 0)
+			{
+				cout << "wysokość nie może być mniejsza lub równa 0\n" << endl;
+				goto stozek_objetosc;
+			}
+			// V = 1/3 * Pi * r^2 * H
+			c = (M_PI * pow(a, 2) * b) / 3.0;
+			cout << endl << "objętość stożka o promieniu " << a << " i wysokości " << b << " wynosi " << c << endl;
+			goto stozek;
+
+		case 3:
+			goto figury;
+		default:
+			goto figury;
+		}
+	case 11:
+		goto ostroslup;
+	ostroslup:
+		cout << "[1]pole [2]objętość [3]powrót\n" << endl;
+		cin >> wybor;
+		switch (wybor)
+		{
+		case 1:
+			goto ostroslup_pole;
+		ostroslup_pole:
+			cout << "Obliczanie pola ostrosłupa prawidłowego czworokątnego." << endl;
+			cout << "wprowadź długość boku podstawy\n" << endl;
+			cin >> a;
+			if (a <= 0)
+			{
+				cout << "bok nie może być mniejszy lub równy 0\n" << endl;
+				goto ostroslup_pole;
+			}
+			cout << "wprowadź wysokość ostrosłupa\n" << endl;
+			cin >> b;
+			if (b <= 0)
+			{
+				cout << "wysokość nie może być mniejsza lub równa 0\n" << endl;
+				goto ostroslup_pole;
+			}
+			// Pc = Pp + Pb = a^2 + 4 * (1/2 * a * h_s)
+			// h_s = sqrt(H^2 + (a/2)^2)
+			{
+				double h_s = sqrt(pow(b, 2) + pow(a / 2.0, 2));
+				c = pow(a, 2) + 2 * a * h_s;
+			}
+			cout << endl << "pole powierzchni całkowitej ostrosłupa prawidłowego czworokątnego o boku podstawy " << a << " i wysokości " << b << " wynosi " << c << endl;
+			goto ostroslup;
+
+		case 2:
+			goto ostroslup_objetosc;
+		ostroslup_objetosc:
+			cout << "Obliczanie objętości ostrosłupa prawidłowego czworokątnego." << endl;
+			cout << "wprowadź długość boku podstawy\n" << endl;
+			cin >> a;
+			if (a <= 0)
+			{
+				cout << "bok nie może być mniejszy lub równy 0\n" << endl;
+				goto ostroslup_objetosc;
+			}
+			cout << "wprowadź wysokość ostrosłupa\n" << endl;
+			cin >> b;
+			if (b <= 0)
+			{
+				cout << "wysokość nie może być mniejsza lub równa 0\n" << endl;
+				goto ostroslup_objetosc;
+			}
+			// V = 1/3 * Pp * H = 1/3 * a^2 * H
+			c = (pow(a, 2) * b) / 3.0;
+			cout << endl << "objętość ostrosłupa o boku podstawy " << a << " i wysokości " << b << " wynosi " << c << endl;
+			goto ostroslup;
+
+		case 3:
+			goto figury;
+		default:
+			goto figury;
 		}
 	case 12:
-		system("CLS");
+		goto walec;
+	walec:
+		cout << "[1]pole [2]objętość [3]powrót\n" << endl;
+		cin >> wybor;
+		switch (wybor)
+		{
+		case 1:
+			goto walec_pole;
+		walec_pole:
+			cout << "wprowadź promień podstawy\n" << endl;
+			cin >> a;
+			if (a <= 0)
+			{
+				cout << "promień nie może być mniejszy lub równy 0\n" << endl;
+				goto walec_pole;
+			}
+			cout << "wprowadź wysokość walca\n" << endl;
+			cin >> b;
+			if (b <= 0)
+			{
+				cout << "wysokość nie może być mniejsza lub równa 0\n" << endl;
+				goto walec_pole;
+			}
+			// Pc = 2 * Pi * r * (r + H)
+			c = 2 * M_PI * a * (a + b);
+			cout << endl << "pole powierzchni całkowitej walca o promieniu " << a << " i wysokości " << b << " wynosi " << c << endl;
+			goto walec;
+
+		case 2:
+			goto walec_objetosc;
+		walec_objetosc:
+			cout << "wprowadź promień podstawy\n" << endl;
+			cin >> a;
+			if (a <= 0)
+			{
+				cout << "promień nie może być mniejszy lub równy 0\n" << endl;
+				goto walec_objetosc;
+			}
+			cout << "wprowadź wysokość walca\n" << endl;
+			cin >> b;
+			if (b <= 0)
+			{
+				cout << "wysokość nie może być mniejsza lub równa 0\n" << endl;
+				goto walec_objetosc;
+			}
+			// V = Pi * r^2 * H
+			c = M_PI * pow(a, 2) * b;
+			cout << endl << "objętość walca o promieniu " << a << " i wysokości " << b << " wynosi " << c << endl;
+			goto walec;
+
+		case 3:
+			goto figury;
+		default:
+			goto figury;
+		}
+	case 13:
+		goto kula;
+	kula:
+		cout << "[1]pole [2]objętość [3]powrót\n" << endl;
+		cin >> wybor;
+		switch (wybor)
+		{
+		case 1:
+			goto kula_pole;
+		kula_pole:
+			cout << "wprowadź promień kuli\n" << endl;
+			cin >> a;
+			if (a <= 0)
+			{
+				cout << "promień nie może być mniejszy lub równy 0\n" << endl;
+				goto kula_pole;
+			}
+			// P = 4 * Pi * r^2
+			c = 4 * M_PI * pow(a, 2);
+			cout << endl << "pole powierzchni kuli o promieniu " << a << " wynosi " << c << endl;
+			goto kula;
+
+		case 2:
+			goto kula_objetosc;
+		kula_objetosc:
+			cout << "wprowadź promień kuli\n" << endl;
+			cin >> a;
+			if (a <= 0)
+			{
+				cout << "promień nie może być mniejszy lub równy 0\n" << endl;
+				goto kula_objetosc;
+			}
+			// V = 4/3 * Pi * r^3
+			c = (4.0 / 3.0) * M_PI * pow(a, 3);
+			cout << endl << "objętość kuli o promieniu " << a << " wynosi " << c << endl;
+			goto kula;
+
+		case 3:
+			goto figury;
+		default:
+			goto figury;
+		}
+	case 15:
+		system("clear");
 		goto figury;
-	case 17:
-	_Exit;
+	case 14:
+		exit(0);
 	}
 }
