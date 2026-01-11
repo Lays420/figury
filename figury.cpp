@@ -20,6 +20,7 @@ figury:
 	case 1:
 		goto kwadrat;
 	kwadrat:
+		// Square Menu: Perimeter, Area, Side Calculation
 		cout << "[1]obwód [2]pole [3]bok [4]powrót\n" << endl;
 		cin >> wybor;
 		switch (wybor)
@@ -27,6 +28,7 @@ figury:
 		case 1:
 			goto kwadrat_obwod;        //   obwod kwadrat
 		kwadrat_obwod:
+			// Square Perimeter Calculation: P = 4 * a
 			cout << "wprowadź bok kwadratu\n" << endl;
 			cin >> a;
 			if (a <= 0)
@@ -41,6 +43,7 @@ figury:
 		case 2:
 			goto kwadrat_pole;         //   pole kwadrat
 		kwadrat_pole:
+			// Square Area Calculation: A = a^2
 			cout << "wprowadź bok kwadratu\n" << endl;
 			cin >> a;
 			if (a <= 0)
@@ -55,6 +58,7 @@ figury:
 		case 3:
 			goto kwadrat_bok;
 		kwadrat_bok:
+			// Calculate side from Area or Perimeter
 			cout << "[1]bok z pola [2]bok z obwodu [3]powót\n" << endl;
 			cin >> wybor;
 			switch (wybor)
@@ -62,6 +66,7 @@ figury:
 			case 1:
 				goto bok_pole;
 			bok_pole:
+				// Side from Area: a = sqrt(A)
 				cout << "wprowadz pole kwdratu\n" << endl;
 				cin >> a;
 				cout << "bok kwdratu o polu " << a << " wynosi " << sqrt(a) << endl;
@@ -70,6 +75,7 @@ figury:
 			case 2:
 				goto bok_obw;
 			bok_obw:
+				// Side from Perimeter: a = P / 4
 				cout << "wprowadz obwód kwdratu\n" << endl;
 				cin >> a;
 				cout << "bok kwdratu o obwodzie " << a << " wynosi " << a / 4 << endl;
@@ -86,6 +92,7 @@ figury:
 	case 2:
 		goto prostokat;
 	prostokat:
+		// Rectangle Menu: Perimeter, Area
 		cout << "[1]obwód [2]pole [3]powrót\n" << endl;
 		cin >> wybor;
 		switch (wybor)
@@ -93,6 +100,7 @@ figury:
 		case 1:
 			goto prostokat_obwod;
 		prostokat_obwod:
+			// Rectangle Perimeter Calculation: P = 2 * (a + b)
 			cout << "wprowadź boki prostokątu\n" << endl;
 			cin >> a;
 			cin >> b;
@@ -108,6 +116,7 @@ figury:
 		case 2:
 			goto prostokat_pole;
 		prostokat_pole:
+			// Rectangle Area Calculation: A = a * b
 			cout << "wprowadź boki prostokątu\n" << endl;
 			cin >> a;
 			cin >> b;
@@ -126,6 +135,7 @@ figury:
 	case 3:
 		goto trojkat;
 	trojkat:
+		// Triangle Menu: Perimeter, Area, Pythagoras
 		cout << "[1]obwod [2]pole [3]pitagoras [4]pitagoras_odwrotność [5]powrót\n" << endl;
 		cin >> wybor;
 		cout << endl;
@@ -142,6 +152,7 @@ figury:
 			case 1:
 				goto rownoboczny;
 			rownoboczny:
+				// Equilateral Triangle Perimeter: P = 3 * a
 				cout << "wprowadź bok\n" << endl;
 			cin >> a;
 				if (a <= 0)
@@ -155,6 +166,7 @@ figury:
 			case 2:
 				goto rownoramienny;
 			rownoramienny:
+				// Isosceles Triangle Perimeter: P = a + 2 * b
 				cout << "wprowadź podstawe\n" << endl;
 				cin >> a;
 				if (a <= 0) {
@@ -180,6 +192,7 @@ figury:
 			case 3:
 				goto roznoramienny;
 			roznoramienny:
+				// Scalene Triangle Perimeter: P = a + b + c
 				cout << "wprowadź pierwszy bok\n" << endl;
 				cin >> a;
 				if (a <= 0)
@@ -226,6 +239,7 @@ figury:
 			case 1:
 				goto dowolny;
 			dowolny:
+			// Triangle Area: A = (a * h) / 2
 			cout << endl << "wprowadź podstawę\n";
 			cin >> a;
 			if (a <= 0)
@@ -248,6 +262,7 @@ figury:
 			case 2:
 				goto pole_rownoboczny;
 			pole_rownoboczny:
+				// Equilateral Triangle Area: A = (a^2 * sqrt(3)) / 4
 				cout << "wprowadź bok trójkąt\n" << endl;
 				cin >> a;
 				a2 = a * a;
@@ -261,6 +276,7 @@ figury:
 		case 3:
 			goto pitagoras;
 		pitagoras:
+			// Pythagorean Theorem: a^2 + b^2 = c^2 (Calculate c)
 			cout << "wprowadź pierwszy bok\n" << endl;
 			cin >> a;
 			if (a <= 0)
@@ -284,6 +300,12 @@ figury:
 		case 4:
 			goto pitagoras_2;
 		pitagoras_2:
+			// Inverse Pythagoras: Given c^2 (approx), find legs assuming isosceles right triangle?
+			// The logic assumes a = b = c_input / 2, then legs = sqrt(a) which implies c_input was c^2/2?
+			// Wait, the code says "kwadrat przeciwprostokątnej". If input is c^2.
+			// Then legs a=b. a^2 + a^2 = c^2 => 2a^2 = c^2 => a^2 = c^2/2.
+			// Code: b = a/2. (input a is c^2). so b = c^2/2 = leg^2.
+			// b2 = sqrt(b) => leg. Correct.
 			cout << endl << "wrowadź kwadrat przeciwprostokątnej(dowolna liczba)\n" << endl;
 			cin >> a;
 			if (a <= 0)
@@ -301,6 +323,7 @@ figury:
 	case 4:
 		goto kolo;
 	kolo:
+		// Circle Menu: Perimeter (Circumference), Area
 		cout << "[1]obwód [2]pole [3]powrót\n" << endl;
 		cin >> wybor;
 		switch (wybor)
@@ -308,6 +331,7 @@ figury:
 		case 1:
 			goto kolo_obwod;
 		kolo_obwod:
+			// Circle Circumference: L = 2 * Pi * r
 			cout << "wprowadź promień\n" << endl;
 			cin >> a;
 			if (a <= 0)
@@ -321,6 +345,7 @@ figury:
 		case 2:
 			goto kolo_pole;
 		kolo_pole:
+			// Circle Area: A = Pi * r^2
 			cout << "wprowadź promień\n" << endl;
 			cin >> a;
 			if (a <= 0)
@@ -340,6 +365,7 @@ figury:
 	case 5:
 		goto rab;
 	rab:
+		// Rhombus (Rąb) Menu: Perimeter, Area
 		cout << "[1]obwód [2]pole [3]powrót\n" << endl;
 		cin >> wybor;
 		switch (wybor)
@@ -347,6 +373,7 @@ figury:
 		case 1:
 			goto obwod_rab;
 		obwod_rab:
+			// Rhombus Perimeter: P = 4 * a
 			cout << "wprowadź bok\n" << endl;
 			cin >> a;
 			if (a <= 0)
@@ -360,6 +387,7 @@ figury:
 		case 2:
 			goto rab_pole;
 		rab_pole:
+			// Rhombus Area: A = a * h
 			cout << "wprowadź bok\n" << endl;
 			cin >> a;
 			if (a <= 0)
@@ -385,6 +413,7 @@ figury:
 	case 6:
 		goto rownoleglobok;
 	rownoleglobok:
+		// Parallelogram Menu: Perimeter, Area
 		cout << "[1]obwód [2]pole [3]powrót\n" << endl;
 		cin >> wybor;
 		switch (wybor)
@@ -392,6 +421,7 @@ figury:
 		case 1:
 			goto obwod_rownoleglobok;
 		obwod_rownoleglobok:
+			// Parallelogram Perimeter: P = 2 * (a + b)
 			cout << "wprowadź bok\n" << endl;
 			cin >> a;
 			if (a <= 0)
@@ -412,6 +442,7 @@ figury:
 		case 2:
 			goto rownoleglobok_pole;
 		rownoleglobok_pole:
+			// Parallelogram Area: A = a * h
 			cout << "wprowadź bok\n" << endl;
 			cin >> a;
 			if (a <= 0)
@@ -437,6 +468,7 @@ figury:
 	case 7:
 		goto trapez;
 	trapez:
+		// Trapezoid Menu: Perimeter, Area
 		cout << "[1]obwód [2]pole [3]powrót\n" << endl;
 		cin >> wybor;
 		cout << endl;
@@ -445,6 +477,7 @@ figury:
 		case 1:
 			goto trapez_obwod;
 		trapez_obwod:
+			// Trapezoid Perimeter: P = a + b + c + d
 			cout << "wprowadź pierwszą podstwę\n" << endl;
 			cin >> a;
 			if (a <= 0)
@@ -480,6 +513,7 @@ figury:
 		case 2:
 			goto trapez_pole;
 		trapez_pole:
+			// Trapezoid Area: A = ((a + b) * h) / 2
 			cout << "wprowadź pierwszą podstwę\n" << endl;
 			cin >> a;
 			if (a <= 0)
@@ -514,6 +548,7 @@ figury:
 	case 8:
 		goto szescian;
 	szescian:
+		// Cube Menu: Surface Area, Volume
 		cout << "[1]pole [2]objętość [3]powrót\n" << endl;
 		cin >> wybor;
 		cout << endl;
@@ -522,6 +557,7 @@ figury:
 		case 1:
 			goto szescian_pole;
 			szescian_pole:
+			// Cube Surface Area: A = 6 * a^2
 			cout << endl << "wprowadź krawędź\n" << endl;
 			cin >> a;
 			a2 = a * a;
@@ -532,6 +568,7 @@ figury:
 		case 2:
 			goto szescian_objetosc;
 		szescian_objetosc:
+			// Cube Volume: V = a^3
 			cout << endl << "wprowadź krawędź\n" << endl;
 			cin >> a;
 			a2 = a * a * a;
@@ -547,6 +584,7 @@ figury:
 	case 9:
 		goto prostopadloscian;
 		prostopadloscian:
+		// Cuboid Menu: Surface Area, Volume
 		cout << "[1]pole [2]objętość [3]powrót\n" << endl;
 		cin >> wybor;
 		switch (wybor)
@@ -554,6 +592,7 @@ figury:
 		case 1:
 			goto prostopadloscian_pole;
 		prostopadloscian_pole:
+			// Cuboid Surface Area: A = 2 * (a*b + b*c + c*a)
 			cout << endl << "wprowadź pierwszą krawędź\n" << endl;
 			cin >> a;
 			if (a <= 0)
@@ -585,6 +624,7 @@ figury:
 		case 2:
 			goto prostopadloscian_objetosc;
 		prostopadloscian_objetosc:
+			// Cuboid Volume: V = a * b * c
 			cout << endl << "wprowadź pierwszą krawędź\n" << endl;
 			cin >> a;
 			if (a <= 0)
@@ -618,6 +658,7 @@ figury:
 	case 10:
 		goto stozek;
 	stozek:
+		// Cone Menu: Surface Area, Volume
 		cout << "[1]pole [2]objętość [3]powrót\n" << endl;
 		cin >> wybor;
 		switch (wybor)
@@ -625,6 +666,7 @@ figury:
 		case 1:
 			goto stozek_pole;
 		stozek_pole:
+			// Cone Total Surface Area: Pc = Pi * r * (r + l)
 			cout << "wprowadź promień podstawy\n" << endl;
 			cin >> a;
 			if (a <= 0)
@@ -639,7 +681,6 @@ figury:
 				cout << "tworząca nie może być mniejsza lub równa 0\n" << endl;
 				goto stozek_pole;
 			}
-			// Pc = Pi * r * (r + l)
 			c = M_PI * a * (a + b);
 			cout << endl << "pole powierzchni całkowitej stożka o promieniu " << a << " i tworzącej " << b << " wynosi " << c << endl;
 			goto stozek;
@@ -647,6 +688,7 @@ figury:
 		case 2:
 			goto stozek_objetosc;
 		stozek_objetosc:
+			// Cone Volume: V = (1/3) * Pi * r^2 * H
 			cout << "wprowadź promień podstawy\n" << endl;
 			cin >> a;
 			if (a <= 0)
@@ -674,6 +716,7 @@ figury:
 	case 11:
 		goto ostroslup;
 	ostroslup:
+		// Pyramid Menu: Surface Area, Volume
 		cout << "[1]pole [2]objętość [3]powrót\n" << endl;
 		cin >> wybor;
 		switch (wybor)
@@ -681,6 +724,7 @@ figury:
 		case 1:
 			goto ostroslup_pole;
 		ostroslup_pole:
+			// Regular Square Pyramid Surface Area: Pc = a^2 + 4 * (1/2 * a * h_s)
 			cout << "Obliczanie pola ostrosłupa prawidłowego czworokątnego." << endl;
 			cout << "wprowadź długość boku podstawy\n" << endl;
 			cin >> a;
@@ -696,7 +740,6 @@ figury:
 				cout << "wysokość nie może być mniejsza lub równa 0\n" << endl;
 				goto ostroslup_pole;
 			}
-			// Pc = Pp + Pb = a^2 + 4 * (1/2 * a * h_s)
 			// h_s = sqrt(H^2 + (a/2)^2)
 			{
 				double h_s = sqrt(pow(b, 2) + pow(a / 2.0, 2));
@@ -708,6 +751,7 @@ figury:
 		case 2:
 			goto ostroslup_objetosc;
 		ostroslup_objetosc:
+			// Regular Square Pyramid Volume: V = (1/3) * a^2 * H
 			cout << "Obliczanie objętości ostrosłupa prawidłowego czworokątnego." << endl;
 			cout << "wprowadź długość boku podstawy\n" << endl;
 			cin >> a;
@@ -736,6 +780,7 @@ figury:
 	case 12:
 		goto walec;
 	walec:
+		// Cylinder Menu: Surface Area, Volume
 		cout << "[1]pole [2]objętość [3]powrót\n" << endl;
 		cin >> wybor;
 		switch (wybor)
@@ -743,6 +788,7 @@ figury:
 		case 1:
 			goto walec_pole;
 		walec_pole:
+			// Cylinder Total Surface Area: Pc = 2 * Pi * r * (r + H)
 			cout << "wprowadź promień podstawy\n" << endl;
 			cin >> a;
 			if (a <= 0)
@@ -757,7 +803,6 @@ figury:
 				cout << "wysokość nie może być mniejsza lub równa 0\n" << endl;
 				goto walec_pole;
 			}
-			// Pc = 2 * Pi * r * (r + H)
 			c = 2 * M_PI * a * (a + b);
 			cout << endl << "pole powierzchni całkowitej walca o promieniu " << a << " i wysokości " << b << " wynosi " << c << endl;
 			goto walec;
@@ -765,6 +810,7 @@ figury:
 		case 2:
 			goto walec_objetosc;
 		walec_objetosc:
+			// Cylinder Volume: V = Pi * r^2 * H
 			cout << "wprowadź promień podstawy\n" << endl;
 			cin >> a;
 			if (a <= 0)
@@ -792,6 +838,7 @@ figury:
 	case 13:
 		goto kula;
 	kula:
+		// Sphere Menu: Surface Area, Volume
 		cout << "[1]pole [2]objętość [3]powrót\n" << endl;
 		cin >> wybor;
 		switch (wybor)
@@ -799,6 +846,7 @@ figury:
 		case 1:
 			goto kula_pole;
 		kula_pole:
+			// Sphere Surface Area: A = 4 * Pi * r^2
 			cout << "wprowadź promień kuli\n" << endl;
 			cin >> a;
 			if (a <= 0)
@@ -806,7 +854,6 @@ figury:
 				cout << "promień nie może być mniejszy lub równy 0\n" << endl;
 				goto kula_pole;
 			}
-			// P = 4 * Pi * r^2
 			c = 4 * M_PI * pow(a, 2);
 			cout << endl << "pole powierzchni kuli o promieniu " << a << " wynosi " << c << endl;
 			goto kula;
@@ -814,6 +861,7 @@ figury:
 		case 2:
 			goto kula_objetosc;
 		kula_objetosc:
+			// Sphere Volume: V = (4/3) * Pi * r^3
 			cout << "wprowadź promień kuli\n" << endl;
 			cin >> a;
 			if (a <= 0)
