@@ -1,597 +1,609 @@
-﻿#define _USE_MATH_DEFINES
 #include <iostream>
-#include <stdio.h>
-#include <windows.h>
-#include <cstdlib>
 #include <cmath>
-int wybor;
-double a, a2, a3, b, b2, ab2, ab, c, c2, abc, d;
-using namespace std;
+#include <limits>
+#include <string>
 
-int main()
-{
-	setlocale(LC_ALL, "polish");
-figury:
-	cout << "[1]kwadrat [2]prostokąt [3]trójkąt [4]koło [5]rąb [6]równoległobok [7]trapez\n[8]sześcian [9]prostopadłościan [10]stożek\n" << endl;
-	cout << "[11]ostrosłóp [12]walec [13]kula [14]opuść [15]wyczyść ekran\n" << endl;
-	cin >> wybor;
-	cout << endl;
-	switch (wybor)
-	{
-	case 1:
-		goto kwadrat;
-	kwadrat:
-		cout << "[1]obwód [2]pole [3]bok [4]powrót\n" << endl;
-		cin >> wybor;
-		switch (wybor)
-		{
-		case 1:
-			goto kwadrat_obwod;        //   obwod kwadrat
-		kwadrat_obwod:
-			cout << "wprowadź bok kwadratu\n" << endl;
-			cin >> a;
-			if (a <= 0)
-			{
-				cout << endl << "bok nie może być mniejszy lub równy 0\n";
-				cout << endl;
-			}
-			else {}
-			cout << endl << "obwód kwdrtu o boku " << a << endl << " wynosi " << a * 4;
-			cout << endl;
-			goto kwadrat;              //   obwod kwadrat
-		case 2:
-			goto kwadrat_pole;         //   pole kwadrat
-		kwadrat_pole:
-			cout << "wprowadź bok kwadratu\n" << endl;
-			cin >> a;
-			if (a <= 0)
-			{
-				cout << endl << "bok nie może być mniejszy lub równy 0\n";
-				cout << endl;
-			}
-			else{}
-			cout << endl << "pole kwadratu o boku " << a << endl << " wynosi " << pow(a, 2);
-			cout << endl;
-			goto figury;               //   pole kwadrat
-		case 3:
-			goto kwadrat_bok;
-		kwadrat_bok:
-			cout << "[1]bok z pola [2]bok z obwodu [3]powót\n" << endl;
-			cin >> wybor;
-			switch (wybor)
-			{
-			case 1:
-				goto bok_pole;
-			bok_pole:
-				cout << "wprowadz pole kwdratu\n" << endl;
-				cin >> a;
-				cout << "bok kwdratu o polu " << a << " wynosi " << sqrt(a) << endl;
-				cout << endl;
-				goto kwadrat_pole;
-			case 2:
-				goto bok_obw;
-			bok_obw:
-				cout << "wprowadz obwód kwdratu\n" << endl;
-				cin >> a;
-				cout << "bok kwdratu o obwodzie " << a << " wynosi " << a / 4 << endl;
-				cout << endl;
-				goto kwadrat_pole;
-			case 3:
-				goto kwadrat;
-			}
-		case 4:
-			goto kwadrat;
-		default:
-			goto figury;;
-		}
-	case 2:
-		goto prostokat;
-	prostokat:
-		cout << "[1]obwód [2]pole [3]powrót\n" << endl;
-		cin >> wybor;
-		switch (wybor)
-		{
-		case 1:
-			goto prostokat_obwod;
-		prostokat_obwod:
-			cout << "wprowadź boki prostokątu\n" << endl;
-			cin >> a;
-			cin >> b;
-			if (a <= 0 || b <= 0)
-			{
-				cout << endl << "żaden z boków nie może być mniejszy lub równy 0\n";
-				cout << endl;
-			}
-			ab2 = 2 * (a + b);
-			cout << endl << "obwód prostokątu o bokach " << a << " " << b << endl << " wynosi " << ab2;
-			cout << endl;
-			goto prostokat;
-		case 2:
-			goto prostokat_pole;
-		prostokat_pole:
-			cout << "wprowadź boki prostokątu\n" << endl;
-			cin >> a;
-			cin >> b;
-			if (a <= 0 || b <= 0)
-			{
-				cout << endl << "żaden z boków nie może być mniejszy lub równy 0\n";
-				cout << endl;
-			}
-			ab = a * b;
-			cout << endl << "pole prostokątu o bokach " << a << " " << b << endl << " wynosi " << ab;
-			cout << endl;
-			goto prostokat;
-		case 3:
-			goto figury;
-		}
-	case 3:
-		goto trojkat;
-	trojkat:
-		cout << "[1]obwod [2]pole [3]pitagoras [4]pitagoras_odwrotność [5]powrót\n" << endl;
-		cin >> wybor;
-		cout << endl;
-		switch (wybor)
-		{
-		case 1:
-			goto trojkat_obwod;
-		trojkat_obwod:
-			cout << "[1]t_rownoboczny [2]t_rownoramienny [3]t_roznoboczny\n" << endl;
-			cin >> wybor;
-			cout << endl;
-			switch (wybor)
-			{
-			case 1:
-				goto rownoboczny;
-			rownoboczny:
-				cout << "wprowadź bok\n" << endl;
-			cin >> a;
-				if (a <= 0)
-				{
-					cout << "bok nie moze być mniejszy lub równy 0\n" << endl;
-					goto rownoboczny;
-				}
-				a2 = 3 * a;
-				cout << "obwot tróąta równobocznego o boku " << a << " wynosi " << a2;
-				goto trojkat_obwod;
-			case 2:
-				goto rownoramienny;
-			rownoramienny:
-				cout << "wprowadź podstawe\n" << endl;
-				cin >> a;
-				if (a <= 0) {
-					cout << "podstawa nie może być mniejsza lub równa 0\n" << endl;
-					goto rownoramienny;
-				}
-				cout << "wprowadź bok\n" << endl;
-				cin >> b;
-				b2 = 2 * b;
-				if (b <= 0) {
-					cout << "bok nie może być mniejzsy lub równy 0\n" << endl;
-					goto rownoramienny;
-				}
-				if (b2 <= a)
-				{
-					cout << "dum ramion nie może byc mniejsza lub równa podstawie\n" << endl;
-					goto rownoramienny;
-				}
-				ab2 = a + (2 * b);
-				cout << endl << "obwód trujkąta o podstawie " << a << " i bokach " << b << " wynosi " << ab2 << endl;
-				cout << endl;
-				goto trojkat_obwod;
-			case 3:
-				goto roznoramienny;
-			roznoramienny:
-				cout << "wprowadź pierwszy bok\n" << endl;
-				cin >> a;
-				if (a <= 0)
-				{
-					cout << "bok nie może być mniejszy lub równy 0\n" << endl;
-					goto roznoramienny;
-				}
-				cout << endl;
-				cout << "wprowadź drugi bok\n" << endl;
-				cin >> b;
-				if (b <= 0)
-				{
-					cout << "bok nie może być mniejszy lub równy 0\n" << endl;
-					goto roznoramienny;
-				}
-				cout << endl;
-				cout << "wprowadź trzeci bok\n" << endl;
-				cin >> c;
-				if (c <= 0)
-				{
-					cout << "bok nie może być mniejszy lub równy 0\n" << endl;
-					goto roznoramienny;
-				}
-				if (a + b <= c || a + c <= b || b + c <= a)
-				{
-					cout << "wprowadź inną wartość boku/boków\nsuma dwóch boków trójkąta musi być większa od trezeciego\n" << endl;
-					goto roznoramienny;
-				}
-				abc = a + b + c;
-				cout << " obwód trojkt różnobocznego o bokach " << a << " " << b << " i " << c << " wynosi " << abc;
-				cout << endl;
-				goto trojkat_pole;
-			case 4:
-				goto trojkat;
-			}
-		case 2:
-			goto trojkat_pole;
-		trojkat_pole:
-			cout << "[1]dowolny trojkąt [2]trójkąt równobozcny [3]powrót\n" << endl;
-			cin >> wybor;
-			cout << endl;
-			switch (wybor)
-			{
-			case 1:
-				goto dowolny;
-			dowolny:
-			cout << endl << "wprowadź podstawę\n";
-			cin >> a;
-			if (a <= 0)
-			{
-				cout << "podstawa nie może być mniejsza lub równa 0\n" << endl;
-				goto trojkat_pole;
-			}
-			cout << endl << "wprowadź wysokość\n";
-			cin >> b;
-				if (b <= 0)
-				{
-					cout << "wysokość nie może być mniejsza lub równa 0\n" << endl;
-					goto trojkat_pole;
-				}
-			ab = (a * b) / 2;
-			cout << endl;
-			cout << "pole trojkąta o podstawie " << a << " i wysokości " << b << " wynosi " << ab;
-			cout << endl;
-				goto trojkat_pole;
-			case 2:
-				goto pole_rownoboczny;
-			pole_rownoboczny:
-				cout << "wprowadź bok trójkąt\n" << endl;
-				cin >> a;
-				a2 = a * a;
-				b = sqrt(3);
-				c = (a2 * b) / 4;
-				cout << endl << "pole trójkąta o boku " << a << " wynosi " << c << endl;
-				goto trojkat_pole;
-			case 3:
-				goto trojkat;
-			}
-		case 3:
-			goto pitagoras;
-		pitagoras:
-			cout << "wprowadź pierwszy bok\n" << endl;
-			cin >> a;
-			if (a <= 0)
-			{
-				cout << "bok nie może byc mniejszy lub równy 0\n" << endl;
-				goto pitagoras;
-			}
-			a2 = a * a;
-			cout << "wprowadź drugi bok\n" << endl;
-			cin >> b;
-			if (b <= 0)
-			{
-				cout << "bok nie może byc mniejszy lub równy 0\n" << endl;
-				goto pitagoras;
-			}
-			b2 = b * b;
-			c2 = a2 + b2;
-			c = sqrt(c2);
-			cout << "przeciwprostokątna trójkąta o bokach " << a << " i " << b << " wynosi " << c << endl;
-			goto trojkat;
-		case 4:
-			goto pitagoras_2;
-		pitagoras_2:
-			cout << endl << "wrowadź kwadrat przeciwprostokątnej(dowolna liczba)\n" << endl;
-			cin >> a;
-			if (a <= 0)
-			{
-				cout << "wprowadzana liczba nie możę być równa lub mniejsza od 0\n" << endl;
-				goto pitagoras_2;
-			}
-			b = a / 2;
-			b2 = sqrt(b);
-			cout << "dwie przyprostokątne równe są po " << b2 << " każda\n" << endl;
-			goto trojkat;
-		case 5:
-			goto figury;
-		}
-	case 5:
-		goto kolo;
-	kolo:
-		cout << "[1]obwód [2]pole [3]powrót\n" << endl;
-		cin >> wybor;
-		switch (wybor)
-		{
-		case 1:
-			goto kolo_obwod;
-		kolo_obwod:
-			cout << "wprowadź promień\n" << endl;
-			cin >> a;
-			if (a <= 0)
-			{
-				cout << "wprowadzana liczba nie możę być równa lub mniejsza od 0\n" << endl;
-				goto kolo_obwod;
-			}
-			b = 2 * M_PI * a;
-			cout << "obwód koła o promieniu " << a << " wynosi " << b << endl;
-			goto kolo;
-		case 2:
-			goto kolo_pole;
-		kolo_pole:
-			cout << "wprowadź promień\n" << endl;
-			cin >> a;
-			if (a <= 0)
-			{
-				cout << "wprowadzana liczba nie możę być równa lub mniejsza od 0\n" << endl;
-				goto kolo_pole;
-			}
-			a2 = a * a;
-			b = M_PI * a2;
-			cout << endl << "pole koła o promieniu " << a << " wynosi " << b << endl;
-			goto kolo;
-		case 3:
-			goto figury;
-		defalut:
-			goto kolo;
-		}
-	case 6:
-		goto rab;
-	rab:
-		cout << "[1]obwód [2]pole [3]powrót\n" << endl;
-		cin >> wybor;
-		switch (wybor)
-		{
-		case 1:
-			goto obwod_rab;
-		obwod_rab:
-			cout << "wprowadź bok\n" << endl;
-			cin >> a;
-			if (a <= 0)
-			{
-				cout << "wprowadzana liczba nie możę być równa lub mniejsza od 0\n" << endl;
-				goto obwod_rab;
-			}
-			a2 = a * 4;
-			cout << endl << "obwod rąbu o boku " << a << " wynosi " << a2 << endl;
-			goto rab;
-		case 2:
-			goto rab_pole;
-		rab_pole:
-			cout << "wprowadź bok\n" << endl;
-			cin >> a;
-			if (a <= 0)
-			{
-				cout << "wprowadzana liczba nie możę być równa lub mniejsza od 0\n" << endl;
-				goto rab_pole;
-			}
-			cout << "wprowadź wysokość\n" << endl;
-			cin >> b;
-			if (b <= 0)
-			{
-				cout << "wprowadzana liczba nie możę być równa lub mniejsza od 0\n" << endl;
-				goto rab_pole;
-			}
-			c = a * b;
-			cout << endl << "pole rąbu o boku <<" << a << " i wysokości " << b << " wynosi " << c << endl;
-			goto rab;
-		case 3:
-			goto figury;
-		default:
-			goto figury;
-		}
-	case 7:
-		goto rownoleglobok;
-	rownoleglobok:
-		cout << "[1]obwód [2]pole [3]powrót\n" << endl;
-		cin >> wybor;
-		switch (wybor)
-		{
-		case 1:
-			goto obwod_rownoleglobok;
-		obwod_rownoleglobok:
-			cout << "wprowadź bok\n" << endl;
-			cin >> a;
-			if (a <= 0)
-			{
-				cout << "wprowadzana liczba nie możę być równa lub mniejsza od 0\n" << endl;
-				goto obwod_rownoleglobok;
-			}
-			cout << "wprowadź drugi bok\n" << endl;
-			cin >> b;
-			if (b <= 0)
-			{
-				cout << "wprowadzana liczba nie możę być równa lub mniejsza od 0\n" << endl;
-				goto obwod_rownoleglobok;
-			}
-			a2 =  (a + b) * 2;
-			cout << endl << "obwod równoległoboku o boku " << a << " i " << b << " wynosi " << a2 << endl;
-			goto rownoleglobok;
-		case 2:
-			goto rownoleglobok_pole;
-		rownoleglobok_pole:
-			cout << "wprowadź bok\n" << endl;
-			cin >> a;
-			if (a <= 0)
-			{
-				cout << "wprowadzana liczba nie możę być równa lub mniejsza od 0\n" << endl;
-				goto rownoleglobok_pole;
-			}
-			cout << "wprowadź wysokość\n" << endl;
-			cin >> b;
-			if (b <= 0)
-			{
-				cout << "wprowadzana liczba nie możę być równa lub mniejsza od 0\n" << endl;
-				goto rownoleglobok_pole;
-			}
-			c = a * b;
-			cout << endl << "pole rąbu o boku <<" << a << " i wysokości " << b << " wynosi " << c << endl;
-			goto rownoleglobok;
-		case 3:
-			goto figury;
-		default:
-			goto figury;
-		}
-	case 8:
-		goto trapez;
-	trapez:
-		cout << "[1]obwód [2]pole [3]powrót\n" << endl;
-		cin >> wybor;
-		cout << endl;
-		switch (wybor)
-		{
-		case 1:
-			goto trapez_obwod;
-		trapez_obwod:
-			cout << "wprowadź pierwszą podstwę\n" << endl;
-			cin >> a;
-			if (a <= 0)
-			{
-				cout << "wprowadzana liczba nie możę być równa lub mniejsza od 0\n" << endl;
-				goto trapez_obwod;
-			}
-			cout << "wprowadź drugą podstwę\n" << endl;
-			cin >> b;
-			if (b <= 0)
-			{
-				cout << "wprowadzana liczba nie możę być równa lub mniejsza od 0\n" << endl;
-				goto trapez_obwod;
-			}
-			cout << "wprowadź pierwszy bok\n" << endl;
-			cin >> c;
-			if (c <= 0)
-			{
-				cout << "wprowadzana liczba nie możę być równa lub mniejsza od 0\n" << endl;
-				goto trapez_obwod;
-			}
-			cout << "wprowadź drugi bok\n" << endl;
-			cin >> d;
-			if (d <= 0)
-			{
-				cout << "wprowadzana liczba nie możę być równa lub mniejsza od 0\n" << endl;
-				goto trapez_obwod;
-			}
-			a2 = a + b + c + d;
-			cout << endl << "obwód trapezu o bokach " << c << " i " << d << " oraz podstawach" << a << " i " << b << " wynosi " << a2;
-			cout << endl;
-			goto trapez;
-		case 2:
-			goto trapez_pole;
-		trapez_pole:
-			cout << "wprowadź pierwszą podstwę\n" << endl;
-			cin >> a;
-			if (a <= 0)
-			{
-				cout << "wprowadzana liczba nie możę być równa lub mniejsza od 0\n" << endl;
-				goto trapez_pole;
-			}
-			cout << "wprowadź drugą podstwę\n" << endl;
-			cin >> b;
-			if (b <= 0)
-			{
-				cout << "wprowadzana liczba nie możę być równa lub mniejsza od 0\n" << endl;
-				goto trapez_pole;
-			}
-			cout << "wprowadź wyokość\n" << endl;
-			cin >> c;
-			if (c <= 0)
-			{
-				cout << "wprowadzana liczba nie możę być równa lub mniejsza od 0\n" << endl;
-				goto trapez_pole;
-			}
-			a2 = (a + b) * c;
-			b2 = a2 / 2;
-			cout << endl << "pole trpezu o podstawach " << a << " i " << b << " oraz wysokości " << c << " wynosi " << b2;
-			cout << endl;
-			goto trapez;
-		case 3:
-			goto figury;
-		default:
-			goto figury;
-		}
-	case 9:
-		goto szescian;
-	szescian:
-		cout << "[1]pole [2]objętość [3]powrót\n" << endl;
-		cin >> wybor;
-		cout << endl;
-		switch (wybor)
-		{
-		case 1:
-			goto szescian_pole;
-			szescian_pole:
-			cout << endl << "wprowadź krawędź\n" << endl;
-			cin >> a;
-			a2 = a * a;
-			a3 = a2 * 6;
-			cout << "pole powierzchni sześcianu o boku " << a << " wynosi " << a3 << endl;
-			cout << endl;
-			goto szescian;
-		case 2:
-			goto szescian_objetosc;
-		szescian_objetosc:
-			cout << endl << "wprowadź krawędź\n" << endl;
-			cin >> a;
-			a2 = a * a * a;
-			cout << endl << "objętość sześcianu o krawędzi " << a << " wynosi " << a2 << endl;
-			cout << endl;
-			goto szescian;
-		case 3:
-			cout << endl;
-			goto figury;
-		default:
-			goto figury;
-		}
-	case 10:
-		goto prostopadloscian;
-		prostopadloscian:
-		cout << "[1]pole [2]objętość [3]powrót\n" << endl;
-		cin >> wybor;
-		switch (wybor)
-		{
-		case 1:
-			goto prostopadloscian_pole;
-		prostopadloscian_pole:
-			cout << endl << "wprowadź pierwszą krawędź\n" << endl;
-			cin >> a;
-			if (a <= 0)
-			{
-				cout << endl << "krawędź nei może być mniejszaa lub równa zeru\n" << endl;
-				goto prostopadloscian_pole;
-			}
-			cout << endl << "wprowadź drugą krawędź\n" << endl;
-			cin >> b;
-			if (b <= 0)
-			{
-				cout << endl << "krawędź nei może być mniejszaa lub równa zeru\n" << endl;
-				goto prostopadloscian_pole;
-			}
-			cout << endl << "wprowadź trzecią krawędź\n" << endl;
-			cin >> c;
-			if (c <= 0)
-			{
-				cout << endl << "krawędź nei może być mniejszaa lub równa zeru\n" << endl;
-				goto prostopadloscian_pole;
-			}
-			a2 = (a * b);
-			b2 = (b * c);
-			c2 = (c * a);
-			abc = (a2 + b2 + c2) * 2;
-			cout << endl << "pole prostopadłościnu o krawędziach " << a << " " << b << " oraz " << c << " wynosi " << abc;
-			cout << endl;
-			goto prostopadloscian;
-		case 2:
-			goto prostopadloscian_objetosc;
-		prostopadloscian_objetosc:
+// Function declarations
+void handleSquare();
+void handleRectangle();
+void handleTriangle();
+void handleCircle();
+void handleRhombus();
+void handleParallelogram();
+void handleTrapezoid();
+void handleCube();
+void handleCuboid();
+void handleCone();
+void handlePyramid();
+void handleCylinder();
+void handleSphere();
+void clearScreen();
+double getPositiveNumber(const std::string& prompt);
 
-		}
-	case 12:
-		system("CLS");
-		goto figury;
-	case 17:
-	_Exit;
-	}
+// Helper function to get a positive number from the user
+double getPositiveNumber(const std::string& prompt) {
+    double value;
+    while (true) {
+        std::cout << prompt;
+        std::cin >> value;
+        if (std::cin.fail() || value <= 0) {
+            std::cout << "Invalid input. Please enter a positive number.\n";
+            std::cin.clear();
+            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+        } else {
+            return value;
+        }
+    }
+}
+
+// Function to clear the screen
+void clearScreen() {
+    // A simple cross-platform way to add newlines to "clear" the screen
+    std::cout << std::string(50, '\n');
+}
+
+int main() {
+    int choice;
+    bool running = true;
+
+    while (running) {
+        std::cout << "---------------------\n";
+        std::cout << "Select a shape:\n";
+        std::cout << "---------------------\n";
+        std::cout << "[1] Square\n[2] Rectangle\n[3] Triangle\n[4] Circle\n";
+        std::cout << "[5] Rhombus\n[6] Parallelogram\n[7] Trapezoid\n[8] Cube\n";
+        std::cout << "[9] Cuboid\n[10] Cone\n[11] Pyramid\n[12] Cylinder\n";
+        std::cout << "[13] Sphere\n\n";
+        std::cout << "[14] Exit\n[15] Clear Screen\n";
+        std::cout << "---------------------\n";
+        std::cout << "Enter your choice: ";
+
+        std::cin >> choice;
+
+        if (std::cin.fail()) {
+            std::cout << "\nInvalid input. Please enter a number.\n\n";
+            std::cin.clear();
+            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+            continue;
+        }
+
+        std::cout << std::endl;
+
+        switch (choice) {
+            case 1: handleSquare(); break;
+            case 2: handleRectangle(); break;
+            case 3: handleTriangle(); break;
+            case 4: handleCircle(); break;
+            case 5: handleRhombus(); break;
+            case 6: handleParallelogram(); break;
+            case 7: handleTrapezoid(); break;
+            case 8: handleCube(); break;
+            case 9: handleCuboid(); break;
+            case 10: handleCone(); break;
+            case 11: handlePyramid(); break;
+            case 12: handleCylinder(); break;
+            case 13: handleSphere(); break;
+            case 14:
+                running = false;
+                std::cout << "Exiting program.\n";
+                break;
+            case 15:
+                clearScreen();
+                break;
+            default:
+                std::cout << "Invalid choice, please try again.\n";
+                break;
+        }
+    }
+
+    return 0;
+}
+
+void handleSquare() {
+    int choice;
+    double side, area, perimeter;
+
+    while (true) {
+        std::cout << "\n--- Square ---\n";
+        std::cout << "[1] Perimeter\n[2] Area\n[3] Find side\n[4] Back\n";
+        std::cout << "Enter your choice: ";
+        std::cin >> choice;
+
+        if (std::cin.fail()) {
+            std::cout << "Invalid input. Please enter a number.\n";
+            std::cin.clear();
+            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+            continue;
+        }
+
+        switch (choice) {
+            case 1:
+                side = getPositiveNumber("Enter the side of the square: ");
+                perimeter = 4 * side;
+                std::cout << "The perimeter of the square is: " << perimeter << std::endl;
+                break;
+            case 2:
+                side = getPositiveNumber("Enter the side of the square: ");
+                area = pow(side, 2);
+                std::cout << "The area of the square is: " << area << std::endl;
+                break;
+            case 3:
+                int sub_choice;
+                std::cout << "\n--- Find Side ---\n[1] From area\n[2] From perimeter\n[3] Back\n";
+                std::cout << "Enter your choice: ";
+                std::cin >> sub_choice;
+
+                if (std::cin.fail()) {
+                    std::cout << "Invalid input. Please enter a number.\n";
+                    std::cin.clear();
+                    std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+                    break;
+                }
+
+                if (sub_choice == 1) {
+                    area = getPositiveNumber("Enter the area of the square: ");
+                    side = sqrt(area);
+                    std::cout << "The side of the square is: " << side << std::endl;
+                } else if (sub_choice == 2) {
+                    perimeter = getPositiveNumber("Enter the perimeter of the square: ");
+                    side = perimeter / 4;
+                    std::cout << "The side of the square is: " << side << std::endl;
+                } else if (sub_choice != 3) {
+                    std::cout << "Invalid choice, please try again.\n";
+                }
+                break;
+            case 4:
+                return;
+            default:
+                std::cout << "Invalid choice, please try again.\n";
+                break;
+        }
+    }
+}
+
+void handleRectangle() {
+    int choice;
+    double a, b;
+
+    while (true) {
+        std::cout << "\n--- Rectangle ---\n";
+        std::cout << "[1] Perimeter\n[2] Area\n[3] Back\n";
+        std::cout << "Enter your choice: ";
+        std::cin >> choice;
+
+        if (std::cin.fail()) {
+            std::cout << "Invalid input. Please enter a number.\n";
+            std::cin.clear();
+            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+            continue;
+        }
+
+        switch (choice) {
+            case 1:
+                a = getPositiveNumber("Enter the first side: ");
+                b = getPositiveNumber("Enter the second side: ");
+                std::cout << "The perimeter of the rectangle is: " << 2 * (a + b) << std::endl;
+                break;
+            case 2:
+                a = getPositiveNumber("Enter the first side: ");
+                b = getPositiveNumber("Enter the second side: ");
+                std::cout << "The area of the rectangle is: " << a * b << std::endl;
+                break;
+            case 3:
+                return;
+            default:
+                std::cout << "Invalid choice, please try again.\n";
+                break;
+        }
+    }
+}
+
+void handleTriangle() {
+    int choice;
+
+    while (true) {
+        std::cout << "\n--- Triangle ---\n";
+        std::cout << "[1] Perimeter\n[2] Area\n[3] Pythagorean theorem\n[4] Back\n";
+        std::cout << "Enter your choice: ";
+        std::cin >> choice;
+
+        if (std::cin.fail()) {
+            std::cout << "Invalid input. Please enter a number.\n";
+            std::cin.clear();
+            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+            continue;
+        }
+
+        switch (choice) {
+            case 1: // Perimeter
+                {
+                    int sub_choice;
+                    std::cout << "\n--- Triangle Perimeter ---\n[1] Equilateral\n[2] Isosceles\n[3] Scalene\n[4] Back\n";
+                    std::cout << "Enter your choice: ";
+                    std::cin >> sub_choice;
+
+                    if (std::cin.fail()) {
+                        std::cout << "Invalid input. Please enter a number.\n";
+                        std::cin.clear();
+                        std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+                        break;
+                    }
+
+                    if (sub_choice == 1) {
+                        double a = getPositiveNumber("Enter the side: ");
+                        std::cout << "The perimeter is: " << 3 * a << std::endl;
+                    } else if (sub_choice == 2) {
+                        double a = getPositiveNumber("Enter the base: ");
+                        double b = getPositiveNumber("Enter the side: ");
+                        if (2 * b <= a) {
+                            std::cout << "The sum of the two sides must be greater than the base.\n";
+                        } else {
+                            std::cout << "The perimeter is: " << a + 2 * b << std::endl;
+                        }
+                    } else if (sub_choice == 3) {
+                        double a = getPositiveNumber("Enter the first side: ");
+                        double b = getPositiveNumber("Enter the second side: ");
+                        double c = getPositiveNumber("Enter the third side: ");
+                        if (a + b <= c || a + c <= b || b + c <= a) {
+                            std::cout << "The sum of any two sides must be greater than the third.\n";
+                        } else {
+                            std::cout << "The perimeter is: " << a + b + c << std::endl;
+                        }
+                    } else if (sub_choice != 4) {
+                        std::cout << "Invalid choice.\n";
+                    }
+                }
+                break;
+            case 2: // Area
+                {
+                    int sub_choice;
+                    std::cout << "\n--- Triangle Area ---\n[1] From base and height\n[2] Equilateral\n[3] Back\n";
+                    std::cout << "Enter your choice: ";
+                    std::cin >> sub_choice;
+
+                    if (std::cin.fail()) {
+                        std::cout << "Invalid input. Please enter a number.\n";
+                        std::cin.clear();
+                        std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+                        break;
+                    }
+
+                    if (sub_choice == 1) {
+                        double a = getPositiveNumber("Enter the base: ");
+                        double h = getPositiveNumber("Enter the height: ");
+                        std::cout << "The area is: " << (a * h) / 2 << std::endl;
+                    } else if (sub_choice == 2) {
+                        double a = getPositiveNumber("Enter the side: ");
+                        std::cout << "The area is: " << (pow(a, 2) * sqrt(3)) / 4 << std::endl;
+                    } else if (sub_choice != 3) {
+                        std::cout << "Invalid choice.\n";
+                    }
+                }
+                break;
+            case 3: // Pythagorean theorem
+                {
+                    double a = getPositiveNumber("Enter the first leg: ");
+                    double b = getPositiveNumber("Enter the second leg: ");
+                    std::cout << "The hypotenuse is: " << sqrt(pow(a, 2) + pow(b, 2)) << std::endl;
+                }
+                break;
+            case 4:
+                return;
+            default:
+                std::cout << "Invalid choice, please try again.\n";
+                break;
+        }
+    }
+}
+
+void handleCircle() {
+    int choice;
+    while (true) {
+        std::cout << "\n--- Circle ---\n";
+        std::cout << "[1] Circumference\n[2] Area\n[3] Back\n";
+        std::cout << "Enter your choice: ";
+        std::cin >> choice;
+
+        if (std::cin.fail()) {
+            std::cout << "Invalid input. Please enter a number.\n";
+            std::cin.clear();
+            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+            continue;
+        }
+
+        if (choice == 1) {
+            double radius = getPositiveNumber("Enter the radius: ");
+            std::cout << "The circumference is: " << 2 * M_PI * radius << std::endl;
+        } else if (choice == 2) {
+            double radius = getPositiveNumber("Enter the radius: ");
+            std::cout << "The area is: " << M_PI * pow(radius, 2) << std::endl;
+        } else if (choice == 3) {
+            return;
+        } else {
+            std::cout << "Invalid choice.\n";
+        }
+    }
+}
+
+void handleRhombus() {
+    int choice;
+    while (true) {
+        std::cout << "\n--- Rhombus ---\n";
+        std::cout << "[1] Perimeter\n[2] Area\n[3] Back\n";
+        std::cout << "Enter your choice: ";
+        std::cin >> choice;
+
+        if (std::cin.fail()) {
+            std::cout << "Invalid input. Please enter a number.\n";
+            std::cin.clear();
+            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+            continue;
+        }
+
+        if (choice == 1) {
+            double side = getPositiveNumber("Enter the side: ");
+            std::cout << "The perimeter is: " << 4 * side << std::endl;
+        } else if (choice == 2) {
+            double side = getPositiveNumber("Enter the side: ");
+            double height = getPositiveNumber("Enter the height: ");
+            std::cout << "The area is: " << side * height << std::endl;
+        } else if (choice == 3) {
+            return;
+        } else {
+            std::cout << "Invalid choice.\n";
+        }
+    }
+}
+
+void handleParallelogram() {
+    int choice;
+    while (true) {
+        std::cout << "\n--- Parallelogram ---\n";
+        std::cout << "[1] Perimeter\n[2] Area\n[3] Back\n";
+        std::cout << "Enter your choice: ";
+        std::cin >> choice;
+
+        if (std::cin.fail()) {
+            std::cout << "Invalid input. Please enter a number.\n";
+            std::cin.clear();
+            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+            continue;
+        }
+
+        if (choice == 1) {
+            double a = getPositiveNumber("Enter the first side: ");
+            double b = getPositiveNumber("Enter the second side: ");
+            std::cout << "The perimeter is: " << 2 * (a + b) << std::endl;
+        } else if (choice == 2) {
+            double a = getPositiveNumber("Enter the base: ");
+            double height = getPositiveNumber("Enter the height: ");
+            std::cout << "The area is: " << a * height << std::endl;
+        } else if (choice == 3) {
+            return;
+        } else {
+            std::cout << "Invalid choice.\n";
+        }
+    }
+}
+
+void handleTrapezoid() {
+    int choice;
+    while (true) {
+        std::cout << "\n--- Trapezoid ---\n";
+        std::cout << "[1] Perimeter\n[2] Area\n[3] Back\n";
+        std::cout << "Enter your choice: ";
+        std::cin >> choice;
+
+        if (std::cin.fail()) {
+            std::cout << "Invalid input. Please enter a number.\n";
+            std::cin.clear();
+            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+            continue;
+        }
+
+        if (choice == 1) {
+            double a = getPositiveNumber("Enter the first base: ");
+            double b = getPositiveNumber("Enter the second base: ");
+            double c = getPositiveNumber("Enter the first side: ");
+            double d = getPositiveNumber("Enter the second side: ");
+            std::cout << "The perimeter is: " << a + b + c + d << std::endl;
+        } else if (choice == 2) {
+            double a = getPositiveNumber("Enter the first base: ");
+            double b = getPositiveNumber("Enter the second base: ");
+            double height = getPositiveNumber("Enter the height: ");
+            std::cout << "The area is: " << ((a + b) * height) / 2 << std::endl;
+        } else if (choice == 3) {
+            return;
+        } else {
+            std::cout << "Invalid choice.\n";
+        }
+    }
+}
+
+void handleCube() {
+    int choice;
+    while (true) {
+        std::cout << "\n--- Cube ---\n";
+        std::cout << "[1] Surface Area\n[2] Volume\n[3] Back\n";
+        std::cout << "Enter your choice: ";
+        std::cin >> choice;
+
+        if (std::cin.fail()) {
+            std::cout << "Invalid input. Please enter a number.\n";
+            std::cin.clear();
+            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+            continue;
+        }
+
+        if (choice == 1) {
+            double side = getPositiveNumber("Enter the side: ");
+            std::cout << "The surface area is: " << 6 * pow(side, 2) << std::endl;
+        } else if (choice == 2) {
+            double side = getPositiveNumber("Enter the side: ");
+            std::cout << "The volume is: " << pow(side, 3) << std::endl;
+        } else if (choice == 3) {
+            return;
+        } else {
+            std::cout << "Invalid choice.\n";
+        }
+    }
+}
+
+void handleCuboid() {
+    int choice;
+    while (true) {
+        std::cout << "\n--- Cuboid ---\n";
+        std::cout << "[1] Surface Area\n[2] Volume\n[3] Back\n";
+        std::cout << "Enter your choice: ";
+        std::cin >> choice;
+
+        if (std::cin.fail()) {
+            std::cout << "Invalid input. Please enter a number.\n";
+            std::cin.clear();
+            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+            continue;
+        }
+
+        if (choice == 1) {
+            double a = getPositiveNumber("Enter the first side: ");
+            double b = getPositiveNumber("Enter the second side: ");
+            double c = getPositiveNumber("Enter the third side: ");
+            std::cout << "The surface area is: " << 2 * (a * b + b * c + c * a) << std::endl;
+        } else if (choice == 2) {
+            double a = getPositiveNumber("Enter the first side: ");
+            double b = getPositiveNumber("Enter the second side: ");
+            double c = getPositiveNumber("Enter the third side: ");
+            std::cout << "The volume is: " << a * b * c << std::endl;
+        } else if (choice == 3) {
+            return;
+        } else {
+            std::cout << "Invalid choice.\n";
+        }
+    }
+}
+
+void handleCone() {
+    int choice;
+    while (true) {
+        std::cout << "\n--- Cone ---\n";
+        std::cout << "[1] Surface Area\n[2] Volume\n[3] Back\n";
+        std::cout << "Enter your choice: ";
+        std::cin >> choice;
+
+        if (std::cin.fail()) {
+            std::cout << "Invalid input. Please enter a number.\n";
+            std::cin.clear();
+            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+            continue;
+        }
+
+        if (choice == 1) {
+            double radius = getPositiveNumber("Enter the radius: ");
+            double height = getPositiveNumber("Enter the height: ");
+            double slant_height = sqrt(pow(height, 2) + pow(radius, 2));
+            std::cout << "The surface area is: " << M_PI * radius * (radius + slant_height) << std::endl;
+        } else if (choice == 2) {
+            double radius = getPositiveNumber("Enter the radius: ");
+            double height = getPositiveNumber("Enter the height: ");
+            std::cout << "The volume is: " << (M_PI * pow(radius, 2) * height) / 3 << std::endl;
+        } else if (choice == 3) {
+            return;
+        } else {
+            std::cout << "Invalid choice.\n";
+        }
+    }
+}
+
+void handlePyramid() {
+    int choice;
+    while (true) {
+        std::cout << "\n--- Pyramid (Square Base) ---\n";
+        std::cout << "[1] Surface Area\n[2] Volume\n[3] Back\n";
+        std::cout << "Enter your choice: ";
+        std::cin >> choice;
+
+        if (std::cin.fail()) {
+            std::cout << "Invalid input. Please enter a number.\n";
+            std::cin.clear();
+            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+            continue;
+        }
+
+        if (choice == 1) {
+            double base_side = getPositiveNumber("Enter the base side: ");
+            double height = getPositiveNumber("Enter the height: ");
+            double slant_height = sqrt(pow(base_side / 2, 2) + pow(height, 2));
+            double base_area = pow(base_side, 2);
+            double lateral_area = 2 * base_side * slant_height;
+            std::cout << "The surface area is: " << base_area + lateral_area << std::endl;
+        } else if (choice == 2) {
+            double base_side = getPositiveNumber("Enter the base side: ");
+            double height = getPositiveNumber("Enter the height: ");
+            std::cout << "The volume is: " << (pow(base_side, 2) * height) / 3 << std::endl;
+        } else if (choice == 3) {
+            return;
+        } else {
+            std::cout << "Invalid choice.\n";
+        }
+    }
+}
+
+void handleCylinder() {
+    int choice;
+    while (true) {
+        std::cout << "\n--- Cylinder ---\n";
+        std::cout << "[1] Surface Area\n[2] Volume\n[3] Back\n";
+        std::cout << "Enter your choice: ";
+        std::cin >> choice;
+
+        if (std::cin.fail()) {
+            std::cout << "Invalid input. Please enter a number.\n";
+            std::cin.clear();
+            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+            continue;
+        }
+
+        if (choice == 1) {
+            double radius = getPositiveNumber("Enter the radius: ");
+            double height = getPositiveNumber("Enter the height: ");
+            std::cout << "The surface area is: " << 2 * M_PI * radius * (radius + height) << std::endl;
+        } else if (choice == 2) {
+            double radius = getPositiveNumber("Enter the radius: ");
+            double height = getPositiveNumber("Enter the height: ");
+            std::cout << "The volume is: " << M_PI * pow(radius, 2) * height << std::endl;
+        } else if (choice == 3) {
+            return;
+        } else {
+            std::cout << "Invalid choice.\n";
+        }
+    }
+}
+
+void handleSphere() {
+    int choice;
+    while (true) {
+        std::cout << "\n--- Sphere ---\n";
+        std::cout << "[1] Surface Area\n[2] Volume\n[3] Back\n";
+        std::cout << "Enter your choice: ";
+        std::cin >> choice;
+
+        if (std::cin.fail()) {
+            std::cout << "Invalid input. Please enter a number.\n";
+            std::cin.clear();
+            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+            continue;
+        }
+
+        if (choice == 1) {
+            double radius = getPositiveNumber("Enter the radius: ");
+            std::cout << "The surface area is: " << 4 * M_PI * pow(radius, 2) << std::endl;
+        } else if (choice == 2) {
+            double radius = getPositiveNumber("Enter the radius: ");
+            std::cout << "The volume is: " << (4.0 / 3.0) * M_PI * pow(radius, 3) << std::endl;
+        } else if (choice == 3) {
+            return;
+        } else {
+            std::cout << "Invalid choice.\n";
+        }
+    }
 }
